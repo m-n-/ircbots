@@ -7,7 +7,11 @@ import base64
 
 client = irc.client.IRC()
 server = client.server()
-server.connect("irc.freenode.net", 6667, "cbot1")
+
+myname = input("what's your name? ")
+friendname = input("who would you like to chat with? ")
+
+server.connect("irc.freenode.net", 6667, myname)
 
 
 #use AES encryption for 16 bit encryption
@@ -52,7 +56,7 @@ def send_msg(): #process sent message to make sure msg is 16 chars
 
 	#encrypt message and encode to b64 and utf-8		
 	encrypted_msg = base64.b64encode(obj.encrypt(msg)).decode("utf-8")
-	server.privmsg("cbot2", encrypted_msg)
+	server.privmsg(friendname, encrypted_msg)
 
 
 	
